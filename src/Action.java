@@ -4,6 +4,7 @@ public class Action {
         try {
             s.getCredit();
             s.buyProduct();
+            s.startRoute();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

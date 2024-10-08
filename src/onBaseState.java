@@ -5,6 +5,7 @@ import java.util.Random;
 public class onBaseState implements StateWeather {
 
     Merchant merchant = new Merchant();
+    Random rnd = new Random();
 
     @Override
     public void buyProduct() throws Exception {
@@ -18,6 +19,8 @@ public class onBaseState implements StateWeather {
 
     @Override
     public void startRoute() throws Exception {
+        City city = new City();
+        city.randomCity();
     }
 
     @Override
@@ -26,9 +29,6 @@ public class onBaseState implements StateWeather {
         System.out.println("Текущие сбережения: " + merchant.getSavings());
     }
 
-    @Override
-    public void checkPossible() throws Exception {
-    }
 
     public void randomProducts(List<Product> boughtProducts) {
         Product meat = new Product("meat", 500, 2.4, null);
@@ -46,7 +46,6 @@ public class onBaseState implements StateWeather {
         allProducts.add(flour);
         allProducts.add(paint);
 
-        Random rnd = new Random();
         double currentTotalCost = 0;
         double currentTotalWeight = 0;
         int money = merchant.getSavings();
@@ -54,7 +53,6 @@ public class onBaseState implements StateWeather {
 
         while (currentTotalCost < money && currentTotalWeight < weightLimit) {
             Product randomProduct = allProducts.get(rnd.nextInt(allProducts.size()));
-
             if (currentTotalCost + randomProduct.getPrice() <= money &&
                     currentTotalWeight + randomProduct.getWeight() <= weightLimit) {
                 boughtProducts.add(randomProduct);

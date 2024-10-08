@@ -2,7 +2,6 @@ public interface StateWeather {
     public void buyProduct() throws Exception;
     public void startRoute() throws Exception;
     public void getCredit() throws Exception;
-    public void checkPossible() throws Exception;
 }
 
 
