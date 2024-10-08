@@ -1,8 +1,9 @@
 public class Merchant {
-    private int weightLimit;
+    private int weightLimit = 250;
     private int travelSpeed;
-    private int savings;
+    private int savings = 2000;
     private Product product;
+
 
     public int getTravelSpeed() {
         return travelSpeed;
