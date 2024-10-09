@@ -37,7 +37,7 @@ public class Action {
             city = cities.get(rnd.nextInt(cities.size()));
             Eventable event = EventGenerator.getRandomEvent();
 
-            if (event instanceof BrokedWheel) {
+            if (event instanceof BrokenWheel || event instanceof RiverDay) {
                 days++;
                 System.out.println("Произошла поломка колеса, день " + (i + 1) + " пропущен.");
                 System.out.println("Плюс день к дате: " + days + " дней");
