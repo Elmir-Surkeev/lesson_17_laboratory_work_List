@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -30,25 +29,22 @@ public class Action {
         Random rnd = new Random();
 
         int days = rnd.nextInt((5) + cities.size());
-        System.out.println("Наш путь заимет"+ days);
+        System.out.println("Наш путь заимет : "+ days);
         int allDistance = 0;
         City city;
         for (int i = 0; i < days; i++) {
             city = cities.get(rnd.nextInt(cities.size()));
             Eventable event = EventGenerator.getRandomEvent();
 
-            if (event instanceof BrokenWheel || event instanceof RiverDay) {
+            if (event instanceof BrokenWheelDay || event instanceof RiverDay) {
                 days++;
                 System.out.println("Произошла поломка колеса, день " + (i + 1) + " пропущен.");
                 System.out.println("Плюс день к дате: " + days + " дней");
-                // День теряется, не прибавляем расстояние и не идем дальше
                 continue;
             }
-
             allDistance += city.getDistance();
-            event.apply(merchant.getTruck());
-
-            System.out.println("Пройден " + (i + 1) + " день, расстояние до города: " + city.getDistance());
+            event.apply(merchant.getTruck(), merchant);
+            System.out.println("|Пройден " + (i + 1) + " день | расстояние до города :" + city.getDistance());
         }
 
         System.out.println("Торговец прибыл.");

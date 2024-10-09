@@ -1,3 +1,3 @@
 public interface Eventable {
-    void apply(Truck truck);
+    void apply(Truck truck, Merchant merchant);
 }

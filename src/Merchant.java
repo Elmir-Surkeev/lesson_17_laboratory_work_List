@@ -29,6 +29,14 @@ public class Merchant {
         return money;
     }
 
+    public void setMoney(double money) {
+        this.money = money;
+    }
+
+    public void setTruck(Truck truck) {
+        this.truck = truck;
+    }
+
     public Truck getTruck() {
         return truck;
     }

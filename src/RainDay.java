@@ -3,7 +3,7 @@ import java.util.Random;
 
 public class RainDay implements Eventable {
     @Override
-    public void apply(Truck truck) {
+    public void apply(Truck truck, Merchant merchant) {
         System.out.println("Дождь! Скорость телеги уменьшена.");
         truck.setSpeed(truck.getSpeed() - 2);
 

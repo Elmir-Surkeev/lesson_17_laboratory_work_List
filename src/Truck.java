@@ -13,6 +13,15 @@ public class Truck {
         this.productList = new ArrayList<Product>();
         this.totalWeight = 0;
     }
+    public Product getMostExpensiveProduct(){
+        Product mostExpensiveProduct = null;
+        for (Product product : productList){
+            if (mostExpensiveProduct == null|| product.getPrice() > mostExpensiveProduct.getPrice()){
+                mostExpensiveProduct = product;
+            }
+        }
+        return mostExpensiveProduct;
+    }
 
     public int getMaxWeight() {
         return maxWeight;
@@ -55,4 +64,14 @@ public class Truck {
             return false;
         }
     }
+
+    public void remove(Product productToSell) {
+        if (productList.remove(productToSell)) {
+            totalWeight -= productToSell.getWeight();
+            System.out.println("Товар " + productToSell.getName() + " был успешно удален из телеги.");
+        } else {
+            System.out.println("Товар " + productToSell.getName() + " не найден в телеге.");
+        }
+    }
+
 }

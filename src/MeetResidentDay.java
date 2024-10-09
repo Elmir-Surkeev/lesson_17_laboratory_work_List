@@ -2,7 +2,7 @@ import java.util.Random;
 
 public class MeetResidentDay implements Eventable{
     @Override
-    public void apply(Truck truck) {
+    public void apply(Truck truck, Merchant merchant) {
         //добавляется нитро для передвижения по лигам
         System.out.println("Продавцу повезло, он встретил местного, который подсказал короткую дорогу");
         Random rnd = new Random();
