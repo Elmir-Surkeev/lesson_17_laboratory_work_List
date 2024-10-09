@@ -1,3 +1,0 @@
-public enum CityEnum {
-    OSH, JALAL_ABAD, KARA_KUL, KARA_BALTA, BISHKEK, KANT, CHOLPON_ATA;
-}

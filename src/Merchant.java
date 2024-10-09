@@ -1,39 +1,40 @@
+import java.util.List;
 import java.util.Random;
 
 public class Merchant {
-    private int weightLimit = 250;
-    private int travelSpeed;
-    private int savings = 2000;
-    private Product product;
+   private double money;
+   private Truck truck;
 
-    Random rnd = new Random();
-    public void randomTravelSpeed(){
-        this.travelSpeed = rnd.nextInt((1)+5);
-        System.out.println(travelSpeed);
+   public Merchant(double money, Truck truck) {
+       this.money = money;
+       this.truck = truck;
+   }
+   public void buyProduct(List<Product>boughtProducts) {
+        Random rnd = new Random();
+        while (money > 0){
+            Product product = boughtProducts.get(rnd.nextInt(boughtProducts.size()));
+            if(truck.addProduct(product) && money >= product.getPrice()){
+                money -= product.getPrice();
+                System.out.println("Товар : "+product.getName() + " куплен за: " + product.getPrice());
+            }else {
+                break;
+            }
+        }
+   }
+    public void travel(City destination) {
+        System.out.println("Начинаем путь в " + destination.getName() + " (расстояние: " + destination.getDistance() + " лиг)");
     }
 
-
-    public int getTravelSpeed() {
-        return travelSpeed;
+    public double getMoney() {
+        return money;
     }
 
-    public void setTravelSpeed(int travelSpeed) {
-        this.travelSpeed = travelSpeed;
+    public Truck getTruck() {
+        return truck;
     }
 
-    public int getSavings() {
-        return savings;
-    }
-
-    public void setSavings(int savings) {
-        this.savings = savings;
-    }
-
-    public int getWeightLimit() {
-        return weightLimit;
-    }
-
-    public void setWeightLimit(int weightLimit) {
-        this.weightLimit = weightLimit;
+    @Override
+    public String toString() {
+        return "Торговец (деньги: " + money + ")";
     }
 }

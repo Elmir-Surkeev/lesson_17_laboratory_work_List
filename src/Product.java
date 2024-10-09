@@ -1,21 +1,26 @@
 public class Product {
     private String name;
-    private double price;
     private double weight;
-    private State state;
+    private double price;
+    private ProductQuality quality;
 
-//    public void setProductState(){
-//        switch (this.state){
-
-    public Product(String name, double price, double weight, State state) {
+    public Product(String name, double price, double weight, ProductQuality quality) {
         this.name = name;
         this.price = price;
         this.weight = weight;
-        this.state = state;
+        this.quality = quality;
     }
-//            case GOOD -> this.state = new State();
-//        }
-//    }
+    public void degradeQuality() {
+        ProductQuality[] qualities = ProductQuality.values();
+        int currentIndex = quality.ordinal();
+        if (currentIndex < qualities.length - 1) {
+            this.quality = qualities[currentIndex + 1];
+        }
+    }
+
+    public double getSalePrice() {
+        return price * quality.getPrice();
+    }
 
     public String getName() {
         return name;
@@ -41,11 +46,4 @@ public class Product {
         this.weight = weight;
     }
 
-    public State getState() {
-        return state;
-    }
-
-    public void setState(State state) {
-        this.state = state;
-    }
 }
