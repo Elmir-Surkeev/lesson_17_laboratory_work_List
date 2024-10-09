@@ -1,8 +1,16 @@
+import java.util.Random;
+
 public class Merchant {
     private int weightLimit = 250;
     private int travelSpeed;
     private int savings = 2000;
     private Product product;
+
+    Random rnd = new Random();
+    public void randomTravelSpeed(){
+        this.travelSpeed = rnd.nextInt((1)+5);
+        System.out.println(travelSpeed);
+    }
 
 
     public int getTravelSpeed() {
