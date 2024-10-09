@@ -29,13 +29,23 @@ public class Action {
         merchant.buyProduct(productList);
         Random rnd = new Random();
 
-        int days = rnd.nextInt(5 + cities.size());
+        int days = rnd.nextInt((5) + cities.size());
+        System.out.println("Наш путь заимет"+ days);
         int allDistance = 0;
         City city;
         for (int i = 0; i < days; i++) {
             city = cities.get(rnd.nextInt(cities.size()));
-            allDistance += city.getDistance();
             Eventable event = EventGenerator.getRandomEvent();
+
+            if (event instanceof BrokedWheel) {
+                days++;
+                System.out.println("Произошла поломка колеса, день " + (i + 1) + " пропущен.");
+                System.out.println("Плюс день к дате: " + days + " дней");
+                // День теряется, не прибавляем расстояние и не идем дальше
+                continue;
+            }
+
+            allDistance += city.getDistance();
             event.apply(merchant.getTruck());
 
             System.out.println("Пройден " + (i + 1) + " день, расстояние до города: " + city.getDistance());
