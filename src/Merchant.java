@@ -20,6 +20,8 @@ public class Merchant {
                 break;
             }
         }
+        //специально сделал для читабельности
+        System.out.println("___________________________________________");
    }
     public void travel(City destination) {
         System.out.println("Начинаем путь в " + destination.getName() + " (расстояние: " + destination.getDistance() + " лиг)");

@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -16,7 +17,7 @@ public class Action {
         List<Product> productList = List.of(
                 new Product("Meat", 100, 10, ProductQuality.NORMAL, false),
                 new Product("Сухофрукты", 50, 5, ProductQuality.NORMAL, false),
-                new Product("Зерно", 80, 7, ProductQuality.NORMAL, false),
+                new Product("Зерно", 80, 7, ProductQuality.NORMAL, true),
                 new Product("Мука", 200, 10, ProductQuality.NORMAL, false),
                 new Product("Ткань", 100, 10, ProductQuality.NORMAL, false),
                 new Product("Краска", 200, 5, ProductQuality.NORMAL, false)
@@ -28,11 +29,12 @@ public class Action {
         merchant.buyProduct(productList);
         Random rnd = new Random();
 
-        int days = rnd.nextInt((5) + cities.size());
+        int days = 5 + rnd.nextInt(cities.size());
         System.out.println("Наш путь заимет : "+ days);
         int allDistance = 0;
         City city;
         for (int i = 0; i < days; i++) {
+            //тут возник вопрос как именно рабоает .get(если я верно понял по индексам да)
             city = cities.get(rnd.nextInt(cities.size()));
             Eventable event = EventGenerator.getRandomEvent();
             if (event instanceof MarketTalk){
