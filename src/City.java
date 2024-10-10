@@ -10,6 +10,11 @@ public class City {
         this.distance = rnd.nextInt((51)+50);
     }
 
+    @Override
+    public String toString() {
+        return name;
+    }
+
     public String getName() {
         return name;
     }

@@ -35,7 +35,10 @@ public class Action {
         for (int i = 0; i < days; i++) {
             city = cities.get(rnd.nextInt(cities.size()));
             Eventable event = EventGenerator.getRandomEvent();
-
+            if (event instanceof MarketTalk){
+                allDistance+=allDistance/4;
+                allDistance+= city.getDistance()*3/2;
+            }
             if (event instanceof BrokenWheelDay || event instanceof RiverDay) {
                 days++;
                 System.out.println("Произошла поломка колеса, день " + (i + 1) + " пропущен.");

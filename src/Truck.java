@@ -6,12 +6,21 @@ public class Truck {
     private int speed;
     private List<Product> productList;
     private int totalWeight;
+    private City city;
 
     public Truck(int maxWeight){
         this.maxWeight = maxWeight;
         this.speed = 5;
         this.productList = new ArrayList<Product>();
         this.totalWeight = 0;
+    }
+
+    public City getCity() {
+        return city;
+    }
+
+    public void setCity(City city) {
+        this.city = city;
     }
     public Product getMostExpensiveProduct(){
         Product mostExpensiveProduct = null;

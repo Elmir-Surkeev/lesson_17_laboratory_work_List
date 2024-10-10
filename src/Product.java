@@ -1,6 +1,22 @@
+import java.util.Objects;
+
 public class Product {
     private String name;
     private double weight;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return Double.compare(weight, product.weight) == 0 && Double.compare(price, product.price) == 0 && exclusive == product.exclusive && Objects.equals(name, product.name) && quality == product.quality;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, weight, price, quality, exclusive);
+    }
+
     private double price;
     private ProductQuality quality;
     private boolean  exclusive;
