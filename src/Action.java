@@ -29,7 +29,7 @@ public class Action {
         merchant.buyProduct(productList);
         Random rnd = new Random();
 
-        int days = 5 + rnd.nextInt(cities.size());
+        int days = 5 + rnd.nextInt(cities.size()-3);
         System.out.println("Наш путь заимет : "+ days);
         int allDistance = 0;
         City city;
