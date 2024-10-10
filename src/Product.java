@@ -3,12 +3,30 @@ public class Product {
     private double weight;
     private double price;
     private ProductQuality quality;
+    private boolean  exclusive;
 
-    public Product(String name, double price, double weight, ProductQuality quality) {
+    public boolean isExclusive() {
+        return exclusive;
+    }
+
+    public void setExclusive(boolean exclusive) {
+        this.exclusive = exclusive;
+    }
+
+    public ProductQuality getQuality() {
+        return quality;
+    }
+
+    public void setQuality(ProductQuality quality) {
+        this.quality = quality;
+    }
+
+    public Product(String name, double price, double weight, ProductQuality quality, boolean exclusive) {
         this.name = name;
         this.price = price;
         this.weight = weight;
         this.quality = quality;
+        this.exclusive = exclusive;
     }
     public void degradeQuality() {
         ProductQuality[] qualities = ProductQuality.values();

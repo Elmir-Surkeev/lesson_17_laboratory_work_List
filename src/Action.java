@@ -14,12 +14,12 @@ public class Action {
         );
 
         List<Product> productList = List.of(
-                new Product("Meat", 100, 10, ProductQuality.NORMAL),
-                new Product("Сухофрукты", 50, 5, ProductQuality.NORMAL),
-                new Product("Зерно", 80, 7, ProductQuality.NORMAL),
-                new Product("Мука", 200, 10, ProductQuality.NORMAL),
-                new Product("Ткань", 100, 10, ProductQuality.NORMAL),
-                new Product("Краска", 200, 5, ProductQuality.NORMAL)
+                new Product("Meat", 100, 10, ProductQuality.NORMAL, false),
+                new Product("Сухофрукты", 50, 5, ProductQuality.NORMAL, false),
+                new Product("Зерно", 80, 7, ProductQuality.NORMAL, false),
+                new Product("Мука", 200, 10, ProductQuality.NORMAL, false),
+                new Product("Ткань", 100, 10, ProductQuality.NORMAL, false),
+                new Product("Краска", 200, 5, ProductQuality.NORMAL, false)
         );
 
         Truck truck = new Truck(400);
