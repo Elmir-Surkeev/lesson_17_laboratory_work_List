@@ -67,14 +67,15 @@ public class Action {
             event.apply(merchant.getTruck(), merchant);
             System.out.println("|Пройден " + (i + 1) + " день | расстояние до города: " + city.getDistance() + " клеток");
 
-            if (traveledDistance >= totalDistance) {
-                if (traveledDistance> totalDistance){
-                    for (int f = 0; totalDistance == traveledDistance; f++){
-                        traveledDistance-=1;
-                        if (traveledDistance == totalDistance){
-                        System.out.println("Вы достигли конечной цели.");
+            if (traveledDistance > totalDistance) {
+                    for (int f = 0; f > 10; f++){
+                        if (totalDistance == traveledDistance){
+                            traveledDistance-=1;
+                            if (traveledDistance == totalDistance){
+                                System.out.println("Вы достигли конечной цели.");
+                                break;
+                            }
                         }
-                    }
                 }
                 break;
             }

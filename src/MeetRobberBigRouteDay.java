@@ -8,14 +8,16 @@ public class MeetRobberBigRouteDay implements Eventable{
         checkMoney(merchant);
     }
     public void checkMoney(Merchant merchant) {
-        if (merchant.getMoney() > 0){
-            merchant.setMoney(merchant.getMoney() - 100);
-            System.out.println("Грабитель забрал 100 монет");
+        int priceRobber = 5;
+        if (merchant.getMoney() > 0 && merchant.getMoney() > priceRobber){
+            merchant.setMoney(merchant.getMoney() - priceRobber);
+            System.out.println("Грабитель забрал "+priceRobber+" монет");
+            System.out.println("У продавца осталось: " + merchant.getMoney());
         }else{
            Product mostExpensiveProduct = merchant.getTruck().getMostExpensiveProduct();
            if (mostExpensiveProduct != null){
                merchant.getTruck().getProductList().remove(mostExpensiveProduct);
-               System.out.println("Грабитель забрал самый дорогой товар" + mostExpensiveProduct.getName());
+               System.out.println("Грабитель забрал самый дорогой  " + mostExpensiveProduct.getName());
            }else {
                System.out.println("Грабитель не стал красть у вас товар, точнее не нашел у вас null");
            }
