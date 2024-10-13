@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -29,41 +28,73 @@ public class Action {
         merchant.buyProduct(productList);
         Random rnd = new Random();
 
-        int days = 5 + rnd.nextInt(cities.size()-3);
-        System.out.println("Наш путь заимет : "+ days);
-        int allDistance = 0;
+        int days = 5 + rnd.nextInt(cities.size() - 3);
+        int totalDistance = 100;
+        int traveledDistance = 0;
+
+        System.out.println("Наш путь займёт: N количество дней и " + totalDistance + " клеток");
+
         City city;
-        for (int i = 0; i < days; i++) {
-            //тут возник вопрос как именно рабоает .get(если я верно понял по индексам да)
+        for (int i = 0; i < 150; i++) {
+            if (traveledDistance >= totalDistance) {
+                System.out.println("Вы прошли все " + totalDistance + " клеток.");
+                break;
+            }
+
             city = cities.get(rnd.nextInt(cities.size()));
             Eventable event = EventGenerator.getRandomEvent();
-            if (event instanceof MarketTalk){
-                allDistance+=allDistance/4;
-                allDistance+= city.getDistance()*3/2;
+
+            if (event instanceof MarketTalk) {
+                int reducedDistance = traveledDistance / 4;
+                traveledDistance += traveledDistance/4;
+                System.out.println("MarketTalk: путь увеличен на " + reducedDistance + " клеток.");
             }
+
+            if (event instanceof MeetResidentDay) {
+                int extraDistance = 3;
+                traveledDistance += extraDistance;
+                System.out.println("|Пройден " + (i + 1) + " день | пройдено 3 клетки.");
+            }
+
             if (event instanceof BrokenWheelDay || event instanceof RiverDay) {
                 days++;
                 System.out.println("Произошла поломка колеса, день " + (i + 1) + " пропущен.");
-                System.out.println("Плюс день к дате: " + days + " дней");
+                System.out.println("Продолжительность пути увеличена на 1 день, теперь: " + days + " дней.");
                 continue;
             }
-            allDistance += city.getDistance();
+
+            traveledDistance += city.getDistance();
             event.apply(merchant.getTruck(), merchant);
-            System.out.println("|Пройден " + (i + 1) + " день | расстояние до города :" + city.getDistance());
+            System.out.println("|Пройден " + (i + 1) + " день | расстояние до города: " + city.getDistance() + " клеток");
+
+            if (traveledDistance >= totalDistance) {
+                if (traveledDistance> totalDistance){
+                    for (int f = 0; totalDistance == traveledDistance; f++){
+                        traveledDistance-=1;
+                        if (traveledDistance == totalDistance){
+                        System.out.println("Вы достигли конечной цели.");
+                        }
+                    }
+                }
+                break;
+            }
         }
 
         System.out.println("Торговец прибыл.");
-        System.out.println("Пройденное расстояние: " + allDistance + " км");
-
+        System.out.println("Пройденное расстояние: " + traveledDistance + " клеток");
 
         double totalSale = 0;
         for (Product item : merchant.getTruck().getProductList()) {
             totalSale += item.getSalePrice();
         }
 
-
         double initialMoney = 2000;
         System.out.println("Товары проданы на сумму: " + totalSale);
-        System.out.println("Прибыль: " + (totalSale - (initialMoney - merchant.getMoney())));
+        double money = (totalSale - (initialMoney - merchant.getMoney()));
+        if (money > 0){
+            System.out.println("Прибыль: " + money);
+        }else {
+            System.out.println("Убыток: "+ money);
+        }
     }
 }

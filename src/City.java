@@ -6,8 +6,7 @@ public class City {
 
     public City(String name) {
         this.name = name;
-        Random rnd = new Random();
-        this.distance = 50 + rnd.nextInt(51);
+        this.distance = 1;
     }
 
     @Override
